@@ -108,9 +108,10 @@ export function DownloadPage() {
       >
         <div className="grid min-w-0 justify-items-start gap-5">
           <h1 id="hero-h" className="text-hero">
-            Download {app.name}
+            Action<span className="text-[#6c22e0]">board</span>
+            <small className="block text-lede font-normal tracking-normal text-muted-foreground">in your mobile</small>
           </h1>
-          <p className="max-w-[44ch] text-lede text-foreground-2">{app.tagline}</p>
+          <p className="max-w-[44ch] text-lede whitespace-pre-line text-foreground-2">{app.tagline}</p>
 
           <Tabs value={platformId} onValueChange={setPlatformId} className="w-full gap-5">
             <TabsList variant="line" className="h-11 w-full max-w-md justify-start gap-8 border-b p-0">
