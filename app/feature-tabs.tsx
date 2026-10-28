@@ -339,10 +339,10 @@ export function FeatureTabs() {
           </div>
           <TabsList
             variant="line"
-            className="h-auto min-h-11 max-w-full flex-wrap justify-start gap-x-6 gap-y-3 border-b p-0 pb-3"
+            className="group-data-horizontal/tabs:h-auto max-w-full flex-wrap justify-start gap-x-6 gap-y-3 border-b p-0 pb-3"
           >
             {tabs.map((t) => (
-              <TabsTrigger key={t.id} value={t.id} className="flex-none px-0 text-base">
+              <TabsTrigger key={t.id} value={t.id} className="h-10 flex-none px-0 text-base">
                 {t.label}
               </TabsTrigger>
             ))}
