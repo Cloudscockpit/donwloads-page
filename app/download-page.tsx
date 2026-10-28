@@ -175,7 +175,7 @@ export function DownloadPage() {
         <Tabs defaultValue={extensions[0].id} className="w-full gap-5">
           <TabsList
             variant="line"
-            className="h-auto min-h-11 max-w-full flex-wrap justify-start gap-x-6 border-b p-0"
+            className="h-auto min-h-11 max-w-full flex-wrap justify-start gap-x-6 gap-y-3 border-b p-0 pb-3"
           >
             {extensions.map((e) => (
               <TabsTrigger key={e.id} value={e.id} className="flex-none px-0 text-base">
