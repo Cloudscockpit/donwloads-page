@@ -1,0 +1,323 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* shadcn theme, filled with the Actionboard paper-and-ink palette (light only). */
+
+@theme inline {
+  --font-sans: var(--font-host-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: var(--font-atkinson-mono), ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-2: var(--foreground-2);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+
+  /* type scale */
+  --text-hero: clamp(2.5rem, 6vw, 4rem);
+  --text-hero--line-height: 1.1;
+  --text-section: clamp(2rem, 4vw, 3rem);
+  --text-section--line-height: 1.1;
+  --text-title: clamp(1.75rem, 3.4vw, 2.5rem);
+  --text-title--line-height: 1.1;
+  --text-lede: 1.25rem;
+  --text-lede--line-height: 1.55;
+}
+
+:root {
+  color-scheme: light;
+  --radius: 0.625rem;
+
+  --background: oklch(95.5% 0.004 85);
+  --foreground: oklch(18% 0.008 85);
+  --foreground-2: oklch(32% 0.009 85);
+  --card: oklch(99.2% 0.002 85);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: var(--foreground);
+  --primary-foreground: var(--card);
+  --secondary: oklch(91.5% 0.005 85);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: oklch(46% 0.01 85);
+  --accent: var(--secondary);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(86% 0.005 85);
+  --input: oklch(68% 0.008 85);
+  --ring: oklch(52% 0.19 255);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-background font-sans text-[1.0625rem] leading-[1.55] text-muted-foreground antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading font-medium tracking-tight text-balance text-foreground;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--ring) 22%, transparent);
+  }
+}
+
+@utility page-container {
+  width: 100%;
+  max-width: calc(1180px + 2 * clamp(16px, 4vw, 40px));
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 40px);
+}
+
+/* ---- Feature showcase: phone frame and glowing orbs ---- */
+
+.phone-stage {
+  position: relative;
+  isolation: isolate;
+  justify-self: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.phone {
+  padding: 10px;
+  background: var(--foreground);
+  border-radius: 50px;
+  box-shadow:
+    0 0 0 1px var(--foreground-2) inset,
+    0 30px 60px -20px oklch(18% 0.008 85 / 0.35);
+}
+
+.phone-screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 540 / 1170;
+  border-radius: 40px;
+  background: #f3f4f8;
+  object-fit: contain;
+}
+
+.orb {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(18px);
+  pointer-events: none;
+  animation: orb-float 9s ease-in-out infinite alternate;
+}
+
+.orb--1 {
+  top: -56px;
+  right: -72px;
+  width: 190px;
+  height: 190px;
+  background: radial-gradient(circle at 35% 35%, oklch(72% 0.2 300), oklch(52% 0.26 293) 55%, transparent 72%);
+  opacity: 0.75;
+}
+
+.orb--2 {
+  top: 70px;
+  right: -110px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 40% 40%, oklch(82% 0.13 250), oklch(64% 0.2 265) 55%, transparent 72%);
+  opacity: 0.6;
+  animation-duration: 11s;
+  animation-delay: -4s;
+}
+
+.orb--3 {
+  top: -96px;
+  right: 40px;
+  width: 84px;
+  height: 84px;
+  background: radial-gradient(circle at 40% 40%, oklch(88% 0.09 320), oklch(70% 0.18 330) 55%, transparent 72%);
+  opacity: 0.55;
+  animation-duration: 7s;
+  animation-delay: -2s;
+}
+
+@keyframes orb-float {
+  to {
+    transform: translate(-14px, 12px) scale(1.08);
+  }
+}
+
+/* ---- Feature tabs: dark cards with an accent glow ---- */
+
+.fcard {
+  --band-ink: oklch(97% 0.005 275);
+  --band-muted: oklch(70% 0.015 275);
+  --band-rule: oklch(100% 0 0 / 0.09);
+
+  background:
+    radial-gradient(120% 70% at 50% 0%, color-mix(in oklab, var(--accent-glow) 45%, transparent), transparent 70%),
+    oklch(17% 0.02 275);
+  border-color: var(--band-rule);
+  color: var(--band-muted);
+  animation: fv-rise 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.fcard:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.fcard:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.fcard-icon {
+  background: color-mix(in oklab, var(--accent-glow) 30%, oklch(20% 0.02 275));
+}
+
+@keyframes fv-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes fv-fill {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes fv-pulse {
+  to {
+    box-shadow: 0 0 0 10px oklch(75% 0.18 150 / 0);
+  }
+}
+
+/* card illustrations (decorative) */
+
+.fv-rings {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 0.5rem;
+}
+
+.fv-ring {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 3px solid var(--band-ink);
+  border-radius: 50%;
+  animation: fv-rise 500ms ease-out both;
+}
+
+.fv-ring--todo {
+  border-style: dotted;
+}
+
+.fv-ring--doing {
+  box-shadow: 0 0 18px oklch(100% 0 0 / 0.35);
+  animation-delay: 100ms;
+}
+
+.fv-ring--review {
+  padding: 4px;
+  border-color: oklch(85% 0.15 90);
+  background: linear-gradient(90deg, transparent 50%, oklch(85% 0.15 90) 50%) content-box;
+  animation-delay: 200ms;
+}
+
+.fv-ring--done {
+  border-color: transparent;
+  background: oklch(70% 0.16 275);
+  box-shadow: 0 0 22px oklch(70% 0.16 275 / 0.7);
+  animation-delay: 300ms;
+}
+
+.fv-tile {
+  border-radius: 10px;
+  background: oklch(100% 0 0 / 0.06);
+  animation: fv-rise 500ms ease-out both;
+}
+
+.fv-tile--hot {
+  background: color-mix(in oklab, var(--accent-glow) 55%, transparent);
+}
+
+.fv-bar {
+  position: relative;
+  display: block;
+  height: 6px;
+  margin-top: 6px;
+  border-radius: 3px;
+  background: oklch(100% 0 0 / 0.1);
+  overflow: hidden;
+}
+
+.fv-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--p);
+  border-radius: inherit;
+  background: color-mix(in oklab, var(--accent-glow) 70%, white);
+  animation: fv-fill 1.2s ease-out both;
+  animation-delay: inherit;
+}
+
+.fv-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: oklch(75% 0.18 150);
+  box-shadow: 0 0 0 0 oklch(75% 0.18 150 / 0.6);
+  animation: fv-pulse 1.6s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .orb,
+  .fcard,
+  .fcard *,
+  .fcard *::after {
+    animation: none;
+  }
+}
