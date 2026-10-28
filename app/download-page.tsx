@@ -106,12 +106,14 @@ export function DownloadPage() {
         className="page-container grid items-start gap-8 py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,380px)] md:gap-16 md:pt-16"
         aria-labelledby="hero-h"
       >
-        <div className="grid min-w-0 justify-items-start gap-5">
-          <h1 id="hero-h" className="text-hero">
+        <div className="@container grid min-w-0 justify-items-start gap-5">
+          <h1 id="hero-h" className="text-hero whitespace-nowrap">
             Action<span className="text-[#6c22e0]">board</span>
-            <small className="block text-lede font-normal tracking-normal text-muted-foreground">in your mobile</small>
+            <small className="ml-1.5 text-[clamp(11px,3.8cqw,1rem)] font-normal tracking-normal text-muted-foreground">
+              in your mobile
+            </small>
           </h1>
-          <p className="max-w-[44ch] text-lede whitespace-pre-line text-foreground-2">{app.tagline}</p>
+          <p className="text-[clamp(9px,3.2cqw,1.25rem)] leading-[1.55] whitespace-nowrap text-foreground-2">{app.tagline}</p>
 
           <Tabs value={platformId} onValueChange={setPlatformId} className="w-full gap-5">
             <TabsList variant="line" className="h-11 w-full max-w-md justify-start gap-8 border-b p-0">

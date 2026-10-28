@@ -1,7 +1,7 @@
 ﻿// Sample release data. Replace with your real release metadata (API, JSON, or CMS).
 export const app = {
   name: "Actionboard",
-  tagline: "Organize your workflow\nwith your team and coding agents.",
+  tagline: "Organize your workflow with several agents under one platform.",
   version: "1.0.0",
   released: "27 October 2026",
 };
